@@ -8,9 +8,8 @@
 <style>
 :root {
   --bg: #000;
-  --row: #000;
-  --border: #fff;
   --text: #fff;
+  --border: rgba(255,255,255,0.25);
 }
 
 * {
@@ -21,7 +20,8 @@
 }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(circle at top, #111 0%, #000 60%);
   color: var(--text);
 }
 
@@ -37,35 +37,59 @@ body {
 
 .hero h1 {
   font-size: 5rem;
-  letter-spacing: 8px;
+  letter-spacing: 10px;
 }
 
 .hero p {
-  margin-top: 16px;
+  margin-top: 18px;
   font-size: 1.1rem;
+  opacity: 0.8;
 }
 
 /* LIST */
 .list {
-  width: 100%;
-  padding: 60px 6%;
+  padding: 80px 6% 120px;
 }
 
+/* CATEGORY */
+.category {
+  margin-bottom: 90px;
+}
+
+.category-title {
+  font-size: 2.2rem;
+  letter-spacing: 4px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.category-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 80px;
+  height: 2px;
+  background: #fff;
+}
+
+/* ROW */
 .row {
   display: grid;
   grid-template-columns: 2fr 1fr auto;
   align-items: center;
-  padding: 28px;
+  padding: 28px 32px;
   border: 1px solid var(--border);
   margin-bottom: 20px;
+  backdrop-filter: blur(4px);
 
-  transform: translateX(-60px);
+  transform: translateY(40px);
   opacity: 0;
-  transition: 0.7s ease;
+  transition: 0.6s ease;
 }
 
 .row.show {
-  transform: translateX(0);
+  transform: translateY(0);
   opacity: 1;
 }
 
@@ -79,6 +103,7 @@ body {
 .label {
   font-size: 0.7rem;
   letter-spacing: 2px;
+  opacity: 0.6;
   text-transform: uppercase;
 }
 
@@ -88,17 +113,23 @@ body {
 
 /* BUTTON */
 .buy {
-  background: #000;
+  background: transparent;
   color: #fff;
   border: 1px solid #fff;
-  padding: 12px 30px;
+  padding: 12px 34px;
   cursor: pointer;
+  letter-spacing: 1px;
   transition: 0.25s;
 }
 
 .buy:hover {
   background: #fff;
   color: #000;
+}
+
+/* HOVER CARD */
+.row:hover {
+  border-color: #fff;
 }
 
 /* MOBILE */
@@ -120,46 +151,61 @@ body {
 
 <section class="list">
 
-  <div class="row">
-    <div class="col">
-      <div class="label">Название</div>
-      <div class="value">la grande combination</div>
-    </div>
+  <!-- 25 m/sec -->
+  <div class="category">
+    <div class="category-title">25 m/sec</div>
 
-    <div class="col">
-      <div class="label">Доход</div>
-      <div class="value">10m / sec</div>
-    </div>
+    <div class="row">
+      <div class="col">
+        <div class="label">Название</div>
+        <div class="value">Ultra Brainrot</div>
+      </div>
 
-    <button class="buy">Купить</button>
+      <div class="col">
+        <div class="label">Доход</div>
+        <div class="value">25 m/sec</div>
+      </div>
+
+      <button class="buy">Купить</button>
+    </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <div class="label">Название</div>
-      <div class="value">ultra brainrot</div>
-    </div>
+  <!-- 60 m/sec -->
+  <div class="category">
+    <div class="category-title">60 m/sec</div>
 
-    <div class="col">
-      <div class="label">Доход</div>
-      <div class="value">25m / sec</div>
-    </div>
+    <div class="row">
+      <div class="col">
+        <div class="label">Название</div>
+        <div class="value">Hyper Hop Core</div>
+      </div>
 
-    <button class="buy">Купить</button>
+      <div class="col">
+        <div class="label">Доход</div>
+        <div class="value">60 m/sec</div>
+      </div>
+
+      <button class="buy">Купить</button>
+    </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <div class="label">Название</div>
-      <div class="value">mega hop engine</div>
-    </div>
+  <!-- 80 m/sec -->
+  <div class="category">
+    <div class="category-title">80 m/sec</div>
 
-    <div class="col">
-      <div class="label">Доход</div>
-      <div class="value">100m / sec</div>
-    </div>
+    <div class="row">
+      <div class="col">
+        <div class="label">Название</div>
+        <div class="value">Omega Brain Engine</div>
+      </div>
 
-    <button class="buy">Купить</button>
+      <div class="col">
+        <div class="label">Доход</div>
+        <div class="value">80 m/sec</div>
+      </div>
+
+      <button class="buy">Купить</button>
+    </div>
   </div>
 
 </section>
@@ -171,7 +217,7 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) e.target.classList.add('show');
   });
-}, { threshold: 0.2 });
+}, { threshold: 0.15 });
 
 rows.forEach(r => observer.observe(r));
 </script>
