@@ -8,10 +8,9 @@
 <style>
 :root {
   --bg: #000;
-  --row: #0d0d0d;
-  --border: #1f1f1f;
+  --row: #000;
+  --border: #fff;
   --text: #fff;
-  --muted: #888;
 }
 
 * {
@@ -37,33 +36,32 @@ body {
 }
 
 .hero h1 {
-  font-size: 6rem;
-  letter-spacing: 10px;
+  font-size: 5rem;
+  letter-spacing: 8px;
 }
 
 .hero p {
-  margin-top: 20px;
-  color: var(--muted);
-  font-size: 1.2rem;
+  margin-top: 16px;
+  font-size: 1.1rem;
 }
 
 /* LIST */
 .list {
   width: 100%;
-  padding: 80px 6%;
+  padding: 60px 6%;
 }
 
 .row {
   display: grid;
   grid-template-columns: 2fr 1fr auto;
   align-items: center;
-  padding: 30px;
-  background: var(--row);
-  border-bottom: 1px solid var(--border);
+  padding: 28px;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
 
-  transform: translateX(-80px);
+  transform: translateX(-60px);
   opacity: 0;
-  transition: 0.8s ease;
+  transition: 0.7s ease;
 }
 
 .row.show {
@@ -79,9 +77,8 @@ body {
 }
 
 .label {
-  font-size: 0.75rem;
-  color: var(--muted);
-  letter-spacing: 1px;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
@@ -91,12 +88,12 @@ body {
 
 /* BUTTON */
 .buy {
-  background: transparent;
+  background: #000;
   color: #fff;
   border: 1px solid #fff;
-  padding: 14px 34px;
+  padding: 12px 30px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.25s;
 }
 
 .buy:hover {
@@ -118,7 +115,7 @@ body {
 
 <section class="hero">
   <h1>HOP SHOP</h1>
-  <p>классный магазин бреинротов с хорошими ценами!</p>
+  <p>магазин бреинротов</p>
 </section>
 
 <section class="list">
@@ -131,7 +128,7 @@ body {
 
     <div class="col">
       <div class="label">Доход</div>
-      <div class="value">10m/sec</div>
+      <div class="value">10m / sec</div>
     </div>
 
     <button class="buy">Купить</button>
@@ -145,7 +142,7 @@ body {
 
     <div class="col">
       <div class="label">Доход</div>
-      <div class="value">25m/sec</div>
+      <div class="value">25m / sec</div>
     </div>
 
     <button class="buy">Купить</button>
@@ -159,7 +156,7 @@ body {
 
     <div class="col">
       <div class="label">Доход</div>
-      <div class="value">100m/sec</div>
+      <div class="value">100m / sec</div>
     </div>
 
     <button class="buy">Купить</button>
