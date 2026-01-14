@@ -7,23 +7,22 @@
 
   <style>
     :root {
-      --bg: #0f0c29;
-      --bg2: #302b63;
-      --bg3: #24243e;
-      --accent: #ff4ecd;
-      --accent2: #4efcff;
+      --bg: #0a0a0a;
+      --card: #141414;
+      --line: #2a2a2a;
       --text: #ffffff;
+      --muted: #b3b3b3;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Inter, system-ui, sans-serif;
     }
 
     body {
-      background: linear-gradient(120deg, var(--bg), var(--bg2), var(--bg3));
+      background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
     }
@@ -39,74 +38,94 @@
     }
 
     .hero h1 {
-      font-size: 6rem;
-      letter-spacing: 6px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glow 3s infinite alternate;
+      font-size: 5.5rem;
+      letter-spacing: 8px;
+      animation: fadeIn 1.5s ease forwards;
     }
 
     .hero p {
       margin-top: 20px;
-      font-size: 1.5rem;
-      opacity: 0.85;
+      font-size: 1.3rem;
+      color: var(--muted);
+      animation: fadeIn 2.2s ease forwards;
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px var(--accent); }
-      to { text-shadow: 0 0 30px var(--accent2); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* PRODUCTS */
     .products {
-      padding: 100px 10%;
+      padding: 80px 8%;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 30px;
     }
 
     .product {
-      display: flex;
-      justify-content: space-between;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 25px 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
       align-items: center;
-      padding: 30px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-      transform: translateY(50px);
+      gap: 30px;
+
       opacity: 0;
+      transform: translateY(40px);
       transition: 0.8s ease;
     }
 
     .product.show {
-      transform: translateY(0);
       opacity: 1;
+      transform: translateY(0);
     }
 
-    .info h2 {
-      font-size: 1.8rem;
+    /* CATEGORY BLOCK */
+    .block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
 
-    .info span {
-      color: var(--accent2);
-      font-size: 1.2rem;
+    .label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .value {
+      font-size: 1.4rem;
     }
 
     .buy {
-      padding: 15px 35px;
-      font-size: 1rem;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      padding: 14px 34px;
+      background: #fff;
       color: #000;
-      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
     }
 
     .buy:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px var(--accent2);
+      transform: scale(1.08);
+      background: #e5e5e5;
+    }
+
+    @media (max-width: 700px) {
+      .product {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .buy {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -121,33 +140,53 @@
 
   <!-- PRODUCTS -->
   <section class="products">
+
     <div class="product">
-      <div class="info">
-        <h2>la grande combination</h2>
-        <span>доход: 10m/sec</span>
+      <div class="block">
+        <div class="label">Название</div>
+        <div class="value">la grande combination</div>
       </div>
+
+      <div class="block">
+        <div class="label">Доход</div>
+        <div class="value">10m/sec</div>
+      </div>
+
       <button class="buy">Купить</button>
     </div>
 
     <div class="product">
-      <div class="info">
-        <h2>ultra brainrot</h2>
-        <span>доход: 25m/sec</span>
+      <div class="block">
+        <div class="label">Название</div>
+        <div class="value">ultra brainrot</div>
       </div>
+
+      <div class="block">
+        <div class="label">Доход</div>
+        <div class="value">25m/sec</div>
+      </div>
+
       <button class="buy">Купить</button>
     </div>
 
     <div class="product">
-      <div class="info">
-        <h2>mega hop engine</h2>
-        <span>доход: 100m/sec</span>
+      <div class="block">
+        <div class="label">Название</div>
+        <div class="value">mega hop engine</div>
       </div>
+
+      <div class="block">
+        <div class="label">Доход</div>
+        <div class="value">100m/sec</div>
+      </div>
+
       <button class="buy">Купить</button>
     </div>
+
   </section>
 
   <script>
-    const products = document.querySelectorAll('.product');
+    const items = document.querySelectorAll('.product');
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -155,9 +194,9 @@
           entry.target.classList.add('show');
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.15 });
 
-    products.forEach(p => observer.observe(p));
+    items.forEach(i => observer.observe(i));
   </script>
 
 </body>
