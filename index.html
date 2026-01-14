@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hop Shop</title>
+
+  <style>
+    :root {
+      --bg: #0f0c29;
+      --bg2: #302b63;
+      --bg3: #24243e;
+      --accent: #ff4ecd;
+      --accent2: #4efcff;
+      --text: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(120deg, var(--bg), var(--bg2), var(--bg3));
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 6rem;
+      letter-spacing: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 3s infinite alternate;
+    }
+
+    .hero p {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      opacity: 0.85;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px var(--accent); }
+      to { text-shadow: 0 0 30px var(--accent2); }
+    }
+
+    /* PRODUCTS */
+    .products {
+      padding: 100px 10%;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .product {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: 0.8s ease;
+    }
+
+    .product.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .info h2 {
+      font-size: 1.8rem;
+    }
+
+    .info span {
+      color: var(--accent2);
+      font-size: 1.2rem;
+    }
+
+    .buy {
+      padding: 15px 35px;
+      font-size: 1rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      color: #000;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .buy:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px var(--accent2);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>HOP SHOP</h1>
+    <p>классный магазин бреинротов с хорошими ценами!</p>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products">
+    <div class="product">
+      <div class="info">
+        <h2>la grande combination</h2>
+        <span>доход: 10m/sec</span>
+      </div>
+      <button class="buy">Купить</button>
+    </div>
+
+    <div class="product">
+      <div class="info">
+        <h2>ultra brainrot</h2>
+        <span>доход: 25m/sec</span>
+      </div>
+      <button class="buy">Купить</button>
+    </div>
+
+    <div class="product">
+      <div class="info">
+        <h2>mega hop engine</h2>
+        <span>доход: 100m/sec</span>
+      </div>
+      <button class="buy">Купить</button>
+    </div>
+  </section>
+
+  <script>
+    const products = document.querySelectorAll('.product');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    products.forEach(p => observer.observe(p));
+  </script>
+
+</body>
+</html>
