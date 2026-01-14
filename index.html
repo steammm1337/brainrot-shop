@@ -23,6 +23,35 @@ body {
   background:
     radial-gradient(circle at top, #111 0%, #000 60%);
   color: var(--text);
+  overflow-x: hidden;
+}
+
+/* SNOW */
+.snow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.snow span {
+  position: absolute;
+  top: -10px;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
 }
 
 /* HERO */
@@ -33,6 +62,8 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .hero h1 {
@@ -49,6 +80,8 @@ body {
 /* LIST */
 .list {
   padding: 80px 6% 120px;
+  position: relative;
+  z-index: 1;
 }
 
 /* CATEGORY */
@@ -93,6 +126,10 @@ body {
   opacity: 1;
 }
 
+.row:hover {
+  border-color: #fff;
+}
+
 /* COLUMN */
 .col {
   display: flex;
@@ -127,11 +164,6 @@ body {
   color: #000;
 }
 
-/* HOVER CARD */
-.row:hover {
-  border-color: #fff;
-}
-
 /* MOBILE */
 @media (max-width: 700px) {
   .row {
@@ -143,6 +175,9 @@ body {
 </head>
 
 <body>
+
+<!-- SNOW -->
+<div class="snow"></div>
 
 <section class="hero">
   <h1>HOP SHOP</h1>
@@ -160,12 +195,22 @@ body {
         <div class="label">Название</div>
         <div class="value">Ultra Brainrot</div>
       </div>
-
       <div class="col">
         <div class="label">Доход</div>
         <div class="value">25 m/sec</div>
       </div>
+      <button class="buy">Купить</button>
+    </div>
 
+    <div class="row">
+      <div class="col">
+        <div class="label">Название</div>
+        <div class="value">Money Money Reindeer</div>
+      </div>
+      <div class="col">
+        <div class="label">Доход</div>
+        <div class="value">25 m/sec</div>
+      </div>
       <button class="buy">Купить</button>
     </div>
   </div>
@@ -179,48 +224,9 @@ body {
         <div class="label">Название</div>
         <div class="value">Hyper Hop Core</div>
       </div>
-
       <div class="col">
         <div class="label">Доход</div>
         <div class="value">60 m/sec</div>
       </div>
-
       <button class="buy">Купить</button>
     </div>
-  </div>
-
-  <!-- 80 m/sec -->
-  <div class="category">
-    <div class="category-title">80 m/sec</div>
-
-    <div class="row">
-      <div class="col">
-        <div class="label">Название</div>
-        <div class="value">Omega Brain Engine</div>
-      </div>
-
-      <div class="col">
-        <div class="label">Доход</div>
-        <div class="value">80 m/sec</div>
-      </div>
-
-      <button class="buy">Купить</button>
-    </div>
-  </div>
-
-</section>
-
-<script>
-const rows = document.querySelectorAll('.row');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('show');
-  });
-}, { threshold: 0.15 });
-
-rows.forEach(r => observer.observe(r));
-</script>
-
-</body>
-</html>
